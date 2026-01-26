@@ -1,7 +1,22 @@
+#
+# Copyright (C) 2025 Procion ByProcion@gmail.com
+#
+# This file is part of WMM-toolkit.
+#  This work is licensed under the terms of the MIT license.
+#
+#  This files is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#  See the LICENSE file for more details.
+#
 cmake_minimum_required(VERSION 3.16)
 
-project(Wirus VERSION 0.1 LANGUAGES CXX)
+project(plugin-name VERSION 0.1 LANGUAGES CXX)
+set(PLUGIN plugin-target-name)
 
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -26,6 +41,6 @@ set_target_properties(PLUGIN PROPERTIES
 
 
 set_target_properties(PLUGIN PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/plugins
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/plugins
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/plugins
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/plugins
 )
