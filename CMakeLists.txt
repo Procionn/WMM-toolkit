@@ -11,8 +11,8 @@
 #
 cmake_minimum_required(VERSION 3.16)
 
-project(plugin-name VERSION 0.1 LANGUAGES CXX)
-set(PLUGIN plugin-target-name)
+set(PLUGIN MyPlugin)
+project(${PLUGIN} VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -22,25 +22,27 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 
-add_library(PLUGIN SHARED
+add_library(${PLUGIN} SHARED
 
 )
 
-target_include_directories(PLUGIN PRIVATE
-  ${CMAKE_SOURCE_DIR}/include
+target_include_directories(${PLUGIN} PUBLIC
+  ${CMAKE_SOURCE_DIR}${PLUGIN}/include
 )
 
-target_link_libraries(PLUGIN PRIVATE
+target_link_libraries(${PLUGIN} PRIVATE
   Qt${QT_VERSION_MAJOR}::Widgets
 
 )
 
-set_target_properties(PLUGIN PROPERTIES
+set_target_properties(${PLUGIN} PROPERTIES
     PREFIX ""
 )
 
 
-set_target_properties(PLUGIN PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/plugins
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/plugins
+set_target_properties(${PLUGIN} PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/plugins/${PLUGIN}
+    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/plugins/${PLUGIN}
 )
+
+target_compile_definitions(${PLUGIN} PRIVATE VORTEX_LIBRARY)
