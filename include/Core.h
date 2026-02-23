@@ -15,9 +15,9 @@
 #include <QtCore/qglobal.h>
 
 #if defined(WMMAPI)
-#define WMMAPI_EXPORT Q_DECL_EXPORT
+    #define WMMAPI_EXPORT Q_DECL_EXPORT
 #else
-#define WMMAPI_EXPORT Q_DECL_IMPORT
+    #define WMMAPI_EXPORT Q_DECL_IMPORT
 #endif
 
 class Core;
@@ -26,7 +26,6 @@ namespace WMM {
     class WMMAPI_EXPORT APICore {
     public:
         static void start_api(Core*);
-        APICore();
 
         void update_lang();
         QString tr (const QString& key);
