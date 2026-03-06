@@ -27,22 +27,22 @@ add_library(${PLUGIN} SHARED
 )
 
 target_include_directories(${PLUGIN} PUBLIC
-  ${CMAKE_SOURCE_DIR}${PLUGIN}/include
+  ${CMAKE_SOURCE_DIR}/include
+)
+
+find_library(WMM_API
+  NAMES wmmAPI
+  PATHS ${CMAKE_SOURCE_DIR}/bin
+  NO_DEFAULT_PATH
 )
 
 target_link_libraries(${PLUGIN} PRIVATE
   Qt${QT_VERSION_MAJOR}::Widgets
-
+  ${WMM_API}
 )
 
 set_target_properties(${PLUGIN} PROPERTIES
     PREFIX ""
 )
 
-
-set_target_properties(${PLUGIN} PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/plugins/${PLUGIN}
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/src/plugins/${PLUGIN}
-)
-
-target_compile_definitions(${PLUGIN} PRIVATE VORTEX_LIBRARY)
+target_compile_definitions(${PLUGIN} PRIVATE PLUGIN_LIBRARY)
